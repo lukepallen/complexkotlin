@@ -5,7 +5,24 @@ println("UW Complex Kotlin homework")
 // use fold to compress the array of strings down into a single string
 // the final string should look like FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ
 //
-val mapFoldResults = ""
+val ints = IntRange(1, 15)
+val mapResults = ints.map { mapFizzBuzz(it) }
+
+fun mapFizzBuzz(it: Int): String {
+    if (it % 3 == 0) {
+        if (it % 5 == 0) {
+            return "FIZZBUZZ"
+        } else {
+            return "FIZZ"
+        }
+    } else if (it % 5 == 0) {
+        return "BUZZ"
+    } else {
+        return ""
+    }
+}
+
+val mapFoldResults = mapResults.fold("") {acc: String, next: String -> acc + next}
 
 
 // This is a utility function for your use as you choose, and as an
@@ -20,10 +37,10 @@ fun Int.times(block: () -> Unit): Unit {
 fun process(message: String, block: (String) -> String): String {
     return ">>> ${message}: {" + block(message) + "}"
 }
-val r1 = "" // call process() with message "FOO" and a block that returns "BAR"
+val r1 = process("foo", {s -> "BAR"}) // call process() with message "FOO" and a block that returns "BAR"
 
 val r2_message = "wooga"
-val r2 = "" // call process() with message "FOO" and a block that upper-cases 
+val r2 = process("foo", {s -> r2_message.toUpperCase() + r2_message.toUpperCase() + r2_message.toUpperCase()})  // call process() with message "FOO" and a block that upper-cases 
             // r2_message, and repeats it three times with no spaces: "WOOGAWOOGAWOOGA"
 
 
